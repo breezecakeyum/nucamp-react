@@ -10,6 +10,7 @@ import Header from './HeaderComponent';
 import Footer from './FooterComponent';
 import Home from './HomeComponent';
 import Contact from './ContactComponent';
+import About from './AboutComponent';
 import { Switch, Route, Redirect } from 'react-router-dom';
 
 class Main extends Component {
@@ -26,6 +27,16 @@ class Main extends Component {
 
     render() {
 
+        const HomePage = () => {
+            return (
+                <Home
+                    campsite={this.state.campsites.filter(campsite => campsite.featured)[0]}
+                    promotion={this.state.promotions.filter(promotion => promotion.featured)[0]}
+                    partner={this.state.partners.filter(partner => partner.featured)[0]}
+                />
+            );
+        }
+
         const CampsiteWithId = ({match}) => {
             return (
                 <CampsiteInfo 
@@ -40,10 +51,13 @@ class Main extends Component {
                 <Header />
                 <Switch>
                     <Route path='/home' component={HomePage} />
+                    <Route exact path='/directory' render={() => <Directory campsites={this.state.campsites}/>} />
                     <Route path='/directory/:campsiteId' component={CampsiteWithId} />
-                    <Redirect to='/home' />
                     <Route exact path='/contactus' component={Contact} />
+                    <Route exact path='/aboutus' render={() => <About partners={this.state.partners}/>} />
+                    <Redirect to='/home' />
                 </Switch>
+                <Footer/>
             </div>
         );
     };
