@@ -10,8 +10,8 @@ const required = val => val && val.length;
 const maxLength = len => val => !val || (val.length <= len);
 const minLength = len => val => val && (val.length >= len);
 
-function RenderComments({comments, addComment, campsiteId}) {
-    return (
+function RenderComments({comments, postComment, campsiteId}) {    
+  return (
       <div className="col-md-7">
         <Card>
         <CardImg top src={baseUrl + campsite.image} alt={campsite.name} />
@@ -38,7 +38,7 @@ function RenderComments({comments, addComment, campsiteId}) {
               }).format(new Date(Date.parse(comments.date)))}{" "}
             </div>
           ))}
-                <CommentForm campsiteId={campsiteId} addComment={addComment} />
+                <CommentForm campsiteId={campsiteId} postComment={postComment} />
         </div>
       );
     }
@@ -61,8 +61,8 @@ function RenderComments({comments, addComment, campsiteId}) {
     
         handleSubmit(values) {
           this.toggleModal();
-          this.props.addComment(this.props.campsiteId, values.rating, values.author, values.text);
-      }
+          this.props.postComment(this.props.campsiteId, values.rating, values.author, values.text);
+        }
 
     
     render(){ 
@@ -160,7 +160,7 @@ function RenderComments({comments, addComment, campsiteId}) {
                 <RenderCampsite campsite={props.campsite} />
                 <RenderComments 
                         comments={props.comments}
-                        addComment={props.addComment}
+                        postComment={props.postComment}                   
                         campsiteId={props.campsite.id}
                     />
             </div>
