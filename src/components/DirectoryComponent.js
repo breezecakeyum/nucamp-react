@@ -8,7 +8,7 @@ function RenderDirectoryItem({campsite}) {
     return (
         <Card>
             <Link to={`/directory/${campsite.id}`}>
-            <CardImg width="100%" src={baseUrl + campsite.image} alt={campsite.name} />
+                <CardImg width="100%" src={baseUrl + campsite.image} alt={campsite.name} />
                 <CardImgOverlay>
                     <CardTitle>{campsite.name}</CardTitle>
                 </CardImgOverlay>
@@ -46,23 +46,24 @@ function Directory(props) {
             </div>
         );
     } 
+    
     return (
-      <div className="container">
-          <div className="row">
-              <div className="col">
-                  <Breadcrumb>
-                      <BreadcrumbItem><Link to="/home">Home</Link></BreadcrumbItem>
-                      <BreadcrumbItem active>Directory</BreadcrumbItem>
-                  </Breadcrumb>
-                  <h2>Directory</h2>
-                  <hr />
-              </div>
-          </div>
-          <div className="row">
-              {directory}
-          </div>
-      </div>
-  );
+        <div className="container">
+            <div className="row">
+                <div className="col">
+                    <Breadcrumb>
+                        <BreadcrumbItem><Link to="/home">Home</Link></BreadcrumbItem>
+                        <BreadcrumbItem active>Directory</BreadcrumbItem>
+                    </Breadcrumb>
+                    <h2>Directory</h2>
+                    <hr />
+                </div>
+            </div>
+            <div className="row">
+                {directory}
+            </div>
+        </div>
+    );
 }
 
 export default Directory;
